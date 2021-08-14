@@ -1,7 +1,7 @@
 class Todo {
   String? uid;
   String? title;
-  bool? isComplet;
+  bool? isComplete;
 
-  Todo({this.uid, this.title, this.isComplet});
+  Todo({this.uid, this.title, this.isComplete});
 }

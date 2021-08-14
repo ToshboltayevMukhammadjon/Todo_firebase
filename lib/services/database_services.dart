@@ -3,17 +3,17 @@ import 'package:todo_firebase/model/todo.dart';
 
 class DatabaseService {
   CollectionReference todosCollection =
-      FirebaseFirestore.instance.collection("Todos");
+  FirebaseFirestore.instance.collection("Todos");
 
   Future createNewTodo(String title) async {
     return await todosCollection.add({
       "title": title,
-      "isComplet": false,
+      "isComplete": false,
     });
   }
 
-  Future completTask(uid) async {
-    await todosCollection.doc(uid).update({"isComplet": true});
+  Future completeTask(uid) async {
+    await todosCollection.doc(uid).update({"isComplete": true});
   }
 
   Future removeTodo(uid) async {
@@ -24,7 +24,7 @@ class DatabaseService {
     if (snapshot != null) {
       return snapshot.docs.map((e) {
         return Todo(
-          isComplet: e.data()["isComplet"],
+          isComplete: e.data()["isComplete"],
           title: e.data()["title"],
           uid: e.id,
         );
@@ -38,3 +38,4 @@ class DatabaseService {
     return todosCollection.snapshots().map(todoFromFirestore);
   }
 }
+
